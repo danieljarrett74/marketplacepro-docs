@@ -122,10 +122,10 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     ssl_support_method  = "sni-only"
   }
 
-  restrictions {
+restrictions {
     geo_restriction {
-      restriction_type = "whitelist"
-      locations        = ["US"]
+      restriction_type = "none"
+      locations = []
     }
   }
 }
