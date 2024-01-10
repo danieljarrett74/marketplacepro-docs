@@ -2,6 +2,16 @@ provider "aws" {
     region = "us-east-1" # or your preferred region
 }
 
+terraform {
+  backend "s3" {
+    bucket         = "drj-terraform-state-bucket"
+    key            = "marketplacepro-docs/production/terraform.tfstate"
+    region         = "us-east-2"
+    dynamodb_table = "terraform-lock-table"
+    encrypt        = true
+  }
+}
+
 data "aws_route53_zone" "selected" {
     name         = "${var.tld}."
     private_zone = false

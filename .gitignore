@@ -5,3 +5,4 @@ terraform.tfstate
 build
 node_modules
 
+infrastructure/.terraform.tfstate.lock.info
