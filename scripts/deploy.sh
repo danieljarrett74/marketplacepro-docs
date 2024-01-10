@@ -8,7 +8,7 @@ echo "Contents of the build directory:"
 ls -al
 
 # Sync files to S3 with verbose output
-if aws s3 sync . s3://marketplacepro-docs --delete --verbose; then
+if aws s3 sync . s3://marketplacepro-docs --delete --debug; then
     echo "Deployment to S3 completed successfully."
 else
     echo "Deployment to S3 failed."
