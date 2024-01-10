@@ -1,4 +1,5 @@
 #!/bin/bash
+export AWS_REGION="us-east-1"
 
 # Navigate to the build directory
 cd docusaurus/build || { echo "Failed to navigate to docusaurus/build directory"; exit 1; }

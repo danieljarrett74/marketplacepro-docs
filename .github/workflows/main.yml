@@ -51,7 +51,8 @@ jobs:
         - name: Deploy to AWS
           run: |
             chmod +x $GITHUB_WORKSPACE/scripts/deploy.sh
-            $GITHUB_WORKSPACE/scripts/deploy.sh
+            AWS_REGION="us-east-1" $GITHUB_WORKSPACE/scripts/deploy.sh
           env:
             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          
