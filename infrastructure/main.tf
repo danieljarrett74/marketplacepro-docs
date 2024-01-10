@@ -90,6 +90,11 @@ resource "aws_acm_certificate_validation" "cert_validation" {
 resource "aws_cloudfront_distribution" "s3_distribution" {
   depends_on = [aws_acm_certificate_validation.cert_validation, aws_s3_bucket_policy.bucket_policy]
 
+  aliases             = ["${var.subdomain}.${var.tld}"]
+  comment = "CloudFront distribution for ${var.subdomain}.${var.tld}"
+
+
+
   origin {
     domain_name = aws_s3_bucket.docusaurus_bucket.bucket_regional_domain_name
     origin_id   = "S3-${aws_s3_bucket.docusaurus_bucket.id}"
@@ -120,6 +125,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   viewer_certificate {
     acm_certificate_arn = aws_acm_certificate.ssl_cert.arn
     ssl_support_method  = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 
 restrictions {
